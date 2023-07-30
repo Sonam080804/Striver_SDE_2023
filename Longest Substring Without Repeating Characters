@@ -1,0 +1,22 @@
+#include <bits/stdc++.h> 
+int uniqueSubstrings(string s)
+{
+    int maxi = 0 , n = s.size();
+    set<char>st ;
+    st.insert(s[0]) ;
+    int i = 0 , j = 1 ;
+    while(i < j && j < n){
+      if (st.find(s[j]) == st.end()) {
+        st.insert(s[j]) ; j++ ;
+      }
+      else{
+        while(s[i] != s[j]){
+            st.erase(s[i]) ;
+            i++;
+        }
+        i++ ;j++;
+      }
+      maxi = max(maxi , j - i) ;
+    }
+    return maxi ;
+}
