@@ -1,0 +1,20 @@
+#include <bits/stdc++.h>
+#define ll long long
+pair<int,int> missingAndRepeating(vector<int> &arr, int k)
+{
+	ll n = arr.size();
+    ll sum1 = (n*(n+1))/2 , sum2 = (n*(n+1)*(2*n + 1))/6 ;
+    ll cnt1 = 0 , cnt2 = 0 ;
+    for(auto it : arr){
+        ll a = it ;
+        cnt1 += a ;
+        cnt2 += (a*a) ;
+    }
+    int x = 0, y = 0;
+    sum1 -= cnt1 ; sum2 -= cnt2 ;
+    sum2 /= sum1 ;
+    x = (sum1 + sum2)/2 ;
+    y = sum2 - x ;
+    return {x , y}; 
+	
+}
