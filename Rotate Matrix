@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+
+void rotateMatrix(vector<vector<int>> &mat, int n, int m)
+{
+    int k = min(n,m) ;
+    for(int i = 0 ; i < k/2 ; i++){
+        int cry = mat[i+1][i];
+        for(int j = i ; j < m - i ; j++){
+            swap(cry , mat[i][j]) ;
+        }
+        for(int j = i + 1 ; j < n - i ; j++){
+            swap(cry , mat[j][m-i-1]);
+        }
+        for(int j = m - i - 2 ; j >= i ; j--){
+            swap(cry , mat[n-i-1][j]);
+        }
+        for(int j = n - i - 2 ; j > i ; j--){
+            swap(cry , mat[j][i]);
+        }
+    }
+}
