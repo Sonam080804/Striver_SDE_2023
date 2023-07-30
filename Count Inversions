@@ -1,0 +1,40 @@
+#include <bits/stdc++.h> 
+#define ll long long
+ll cnt = 0 ;
+ll inversion(int s , int e , long long *arr){
+    int m = (e + s)/2 ;
+    int i = s , j = m + 1 , k = 0;
+    ll ans = 0 ;vector<ll>v(e - s + 1);
+    while(i <= m && j <= e){
+        if(arr[i] > arr[j]){
+            v[k] = arr[j] ;k++;
+            ans += m - i + 1;j++;
+        }
+        else{
+            v[k] = arr[i] ; k++;
+            i++;
+        }
+    }
+    while(i <= m){
+        v[k] = arr[i] ; i++ ; k++;
+    }
+    while(j <= e){
+        v[k] = arr[j] ; j++ ; k++;
+    }k = 0 ;
+    for(int i = s ; i <= e ; i++){
+        arr[i] = v[k] ; k++;
+    }
+    return ans ;
+}
+void sort(int s , int e , long long *arr){
+    if(s < e){
+        sort(s , (e + s)/2 , arr);
+        sort((s+e)/2 + 1 , e , arr);
+        cnt += inversion(s , e , arr);
+    }
+}
+long long getInversions(long long *arr, int n){
+    int s = 0 , e = n-1 ;
+    sort(s , e , arr);
+    return cnt ;
+}
