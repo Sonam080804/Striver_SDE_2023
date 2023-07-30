@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+void chek(int k , map<int,int>&m){
+	for(int i = 1 ; i <= k ; i++){
+		int a = i ;
+		for(int j = 2 ; j <= sqrt(a) ; j++){
+           while(a%j == 0){
+			   m[j]++;
+			   a /= j ;
+		   }
+		}
+        if(a > 0)m[a]++;
+	}
+} 
+int uniquePaths(int m, int n) {
+	map<int , int>m1 , m2 , m3 ;
+	chek(m+n-2 , m1) ; chek(m-1 , m2) ; chek(n-1 , m3);
+	int ans = 1 ;
+	for(auto it : m1){
+		it.second -= ( m2[it.first] + m3[it.first] );
+		ans *= pow(it.first , it.second) ;
+	}
+	return ans ;
+} 
