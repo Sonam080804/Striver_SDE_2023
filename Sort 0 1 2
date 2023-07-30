@@ -1,0 +1,18 @@
+#include <bits/stdc++.h> 
+void sort012(int *nums, int n)
+{
+    int j = 0 ;
+        for(int i = 0 ; i < n ; i++){
+            if(nums[i] == 0){
+                while(nums[j] == 0 && j < i)j++;
+                swap(nums[i] , nums[j]);
+            }
+        }
+        int k = n-1 ;
+        for(int i = 0 ; i < n ; i++){
+            if(nums[i] == 2){
+                while(nums[k] == 2 && i < k)k--;
+                swap(nums[i] , nums[k]);
+            }
+        }
+}
